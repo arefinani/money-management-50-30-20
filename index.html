@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Budget Planner</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        background: #fff;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        width: 340px;
+        text-align: center;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+        font-size: 22px;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        margin-bottom: 15px;
+        font-size: 16px;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        background: #667eea;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #5563d6;
+    }
+
+    .results {
+        margin-top: 20px;
+        text-align: left;
+    }
+
+    .box {
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        color: white;
+    }
+
+    .box h3 {
+        margin: 0 0 5px 0;
+    }
+
+    .box p {
+        font-size: 13px;
+        margin: 5px 0 0 0;
+        line-height: 1.4;
+    }
+
+    .needs { background: #ff6b6b; }
+    .wants { background: #feca57; color: #333; }
+    .savings { background: #1dd1a1; }
+
+    footer {
+        margin-top: 15px;
+        font-size: 13px;
+        color: #eee;
+        text-align: center;
+    }
+
+    footer a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    footer a:hover {
+        text-decoration: underline;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Budget Planner</h1>
+    <input type="number" id="income" placeholder="Enter your money (৳)">
+    <button onclick="calculate()">Calculate</button>
+
+    <div class="results" id="results" style="display:none;">
+        
+        <div class="box needs">
+            <h3 id="needs"></h3>
+            <p>
+                Essentials you must pay:<br>
+                • Rent / Home 🏠<br>
+                • Food & groceries 🍚<br>
+                • Transport / travel to work 🚌<br>
+                • Bills (electricity, internet) 💡<br>
+                • Healthcare 💊
+            </p>
+        </div>
+
+        <div class="box wants">
+            <h3 id="wants"></h3>
+            <p>
+                Lifestyle & fun:<br>
+                • Eating out 🍔<br>
+                • Shopping 👕<br>
+                • Entertainment 🎮<br>
+                • Travel / trips ✈️<br>
+                • Subscriptions 📺
+            </p>
+        </div>
+
+        <div class="box savings">
+            <h3 id="savings"></h3>
+            <p>
+                Future & security:<br>
+                • Emergency fund 🛟<br>
+                • Savings 💰<br>
+                • Investments 📈<br>
+                • Debt repayment 💳
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    Made by <a href="https://beacons.ai/synqonic" target="_blank">Arefin</a>
+</footer>
+
+<script>
+function calculate() {
+    let income = document.getElementById("income").value;
+
+    if (income === "" || income <= 0) {
+        alert("Please enter a valid amount");
+        return;
+    }
+
+    let needs = income * 0.5;
+    let wants = income * 0.3;
+    let savings = income * 0.2;
+
+    document.getElementById("needs").innerHTML = "Needs (50%): ৳ " + needs.toFixed(2);
+    document.getElementById("wants").innerHTML = "Wants (30%): ৳ " + wants.toFixed(2);
+    document.getElementById("savings").innerHTML = "Savings (20%): ৳ " + savings.toFixed(2);
+
+    document.getElementById("results").style.display = "block";
+}
+</script>
+
+</body>
+</html>
